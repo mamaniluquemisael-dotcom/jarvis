@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📝 Aplicación de Tareas - JARVIS</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>📝 Mis Tareas</h1>
+            <p class="subtitle">Gestor de tareas inteligente con almacenamiento local</p>
+        </header>
+
+        <!-- Stats -->
+        <div class="stats-container">
+            <div class="stat-card">
+                <span class="stat-emoji">📌</span>
+                <div class="stat-content">
+                    <p class="stat-label">Total</p>
+                    <p class="stat-value" id="stat-total">0</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-emoji">✅</span>
+                <div class="stat-content">
+                    <p class="stat-label">Completadas</p>
+                    <p class="stat-value" id="stat-completed">0</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-emoji">⏳</span>
+                <div class="stat-content">
+                    <p class="stat-label">Pendientes</p>
+                    <p class="stat-value" id="stat-pending">0</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-emoji">🔴</span>
+                <div class="stat-content">
+                    <p class="stat-label">Alta Prioridad</p>
+                    <p class="stat-value" id="stat-high-priority">0</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <p class="progress-label">Progreso: <span id="progress-percent">0</span>%</p>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+            </div>
+        </div>
+
+        <!-- Add Todo Form -->
+        <div class="form-container">
+            <h2>➕ Nueva Tarea</h2>
+            <form id="addTodoForm">
+                <div class="form-group">
+                    <input 
+                        type="text" 
+                        id="todoTitle" 
+                        placeholder="Título de la tarea..."
+                        required
+                    >
+                </div>
+                <div class="form-group">
+                    <textarea 
+                        id="todoDescription" 
+                        placeholder="Descripción (opcional)..."
+                        rows="3"
+                    ></textarea>
+                </div>
+                <div class="form-group-row">
+                    <select id="todoPriority">
+                        <option value="low">🟢 Baja Prioridad</option>
+                        <option value="medium" selected>🟡 Prioridad Normal</option>
+                        <option value="high">🔴 Alta Prioridad</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary">✨ Añadir Tarea</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Filters -->
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">📋 Todas</button>
+            <button class="filter-btn" data-filter="pending">⏳ Pendientes</button>
+            <button class="filter-btn" data-filter="completed">✅ Completadas</button>
+        </div>
+
+        <!-- Todos List -->
+        <div class="todos-container">
+            <ul class="todos-list" id="todosList">
+                <li class="empty-state">
+                    <p>📭 No hay tareas. ¡Añade una para empezar!</p>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="actions">
+            <button class="btn btn-secondary" id="clearCompletedBtn">🧹 Limpiar Completadas</button>
+            <button class="btn btn-secondary" id="exportBtn">📤 Exportar</button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
